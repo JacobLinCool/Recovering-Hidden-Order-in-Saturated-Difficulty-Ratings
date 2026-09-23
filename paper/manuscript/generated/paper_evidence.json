@@ -1,0 +1,279 @@
+{
+  "bootstrap_contract": {
+    "all_reported_intervals_have_10000_valid_replicates": true,
+    "dojo_blocked_permutation_rows": 4,
+    "dojo_metric_rows": 4,
+    "global_hidden_contrast_rows": 3,
+    "requested_replicates": 10000,
+    "sequence_hidden_contrast_rows": 4,
+    "sequence_representation_contrast_rows": 3
+  },
+  "dojo": {
+    "below_ceiling_pair_accuracy": 0.6261245139821233,
+    "below_ceiling_pair_count": 425,
+    "control_placement_count": 201,
+    "pair_accuracy": 0.7665991811680501,
+    "pair_ci_high": 0.894623033052667,
+    "pair_ci_low": 0.6049957156321253,
+    "pair_count": 152,
+    "pair_permutation_p": 9.999000099990002e-05,
+    "placement_count": 47,
+    "sequence_pair_accuracy": 0.709260207255728,
+    "sequence_pair_ci_high": 0.8590433583295461,
+    "sequence_pair_ci_low": 0.5318355383864397,
+    "sequence_spearman_ci_high": 0.7557862184644216,
+    "sequence_spearman_ci_low": 0.10081257728230947,
+    "sequence_spearman_rho": 0.5037067469380344,
+    "source_snapshot_sha256": "d952f059ea22a50b98b293caab777f0873e4ee918101bc2bb1e3f441f0de79d9",
+    "spearman_ci_high": 0.8269144038378156,
+    "spearman_ci_low": 0.24835430093683009,
+    "spearman_permutation_p": 9.999000099990002e-05,
+    "spearman_rho": 0.6152372696192437,
+    "tier_count": 5,
+    "year_count": 6
+  },
+  "generated_files": {
+    "hidden_order_numbers.tex": "20b2f09ef1e5e6743c1a3e1cf35736c3f516e080bfcc95920780630a9391b1f4",
+    "hidden_order_table.tex": "65461accf628a42591a79bc147bab30c2309c43dd2087d2ec04c4645e45a50eb"
+  },
+  "global": {
+    "cap7_gain": 0.22890616889322357,
+    "cap7_gain_ci_high": 0.27704747980290584,
+    "cap7_gain_ci_low": 0.18177551301999603,
+    "cap8_gain": 0.09204801589467138,
+    "cap8_gain_ci_high": 0.1274485271085374,
+    "cap8_gain_ci_low": 0.05840924381562897,
+    "cap8_hidden_count": 699,
+    "cap8_pair_count": 159318,
+    "cap9_gain": 0.043694926766113196,
+    "cap9_gain_ci_high": 0.0743227189468925,
+    "cap9_gain_ci_low": 0.01412762041697611,
+    "chart_count": 1023,
+    "gbdt_cap8_pair": 0.7090535909313449,
+    "gbdt_cap8_rho": 0.4349521990545138,
+    "gbdt_cap8_tau": 0.3379185464988296,
+    "gbdt_native_rho": 0.896954990574791,
+    "ordinal_cap8_pair": 0.8889704866995569,
+    "ordinal_cap8_rho": 0.7657869965439336,
+    "ordinal_cap8_tau": 0.6286785714744365,
+    "ordinal_native_rho": 0.8896453829906964,
+    "title_count": 1019
+  },
+  "schema_version": "icassp2027_paper_evidence_v2",
+  "sequence": {
+    "canonical_contract": {
+      "ensemble_row_count": 8184,
+      "fold_run_count": 80,
+      "metric_row_count": 24,
+      "seed_oof_row_count": 16368
+    },
+    "cap8_ordinal_rho": 0.718432703600944,
+    "cap8_ordinary_rho": 0.4536460909311811,
+    "cap8_topcoded_gain": 0.21716049277152955,
+    "cap8_topcoded_gain_ci_high": 0.25706883107084366,
+    "cap8_topcoded_gain_ci_low": 0.17985655791093164,
+    "cap8_topcoded_rho": 0.6708065837027106,
+    "global_ordinal_logit_cap8_rho": 0.7613436040869892,
+    "representation_gain": -0.04291090048604518,
+    "representation_gain_ci_high": -0.0059278139796790945,
+    "representation_gain_ci_low": -0.07989516071594445
+  },
+  "source_files": {
+    "dojo_analysis_manifest": {
+      "path": "experiments/icassp2027_dojo/reports/analysis_manifest.json",
+      "sha256": "d72f01f45e35ad663641b3d9d579d46661d1beb5586a6eb29ac2309ae6e03583"
+    },
+    "dojo_leave_one_year_out": {
+      "path": "experiments/icassp2027_dojo/reports/leave_one_year_out.jsonl",
+      "sha256": "f07c83aa4606989f3b9a70ce1722e787659c428068131b8dee5d604726ee2f7f"
+    },
+    "dojo_matches": {
+      "path": "experiments/icassp2027_dojo/reports/matched_placements.jsonl",
+      "sha256": "cc23cef4440b28fdb8206acaafdb72bef52f872c1992a114adfa70be6276b001"
+    },
+    "dojo_per_year": {
+      "path": "experiments/icassp2027_dojo/reports/per_year_metrics.jsonl",
+      "sha256": "65dd724a6d49c09d277b7758d9b185a083308edf9f4851f942a10ff4ce783534"
+    },
+    "dojo_placements": {
+      "path": "experiments/icassp2027_dojo/data/course_placements.jsonl",
+      "sha256": "d952f059ea22a50b98b293caab777f0873e4ee918101bc2bb1e3f441f0de79d9"
+    },
+    "dojo_source_manifest": {
+      "path": "experiments/icassp2027_dojo/data/SOURCE_MANIFEST.json",
+      "sha256": "3387f714e52666925aa8fb22be242e0c6aa2e0b30c83938a34a3bdfc134f9423"
+    },
+    "dojo_story": {
+      "path": "experiments/icassp2027_dojo/reports/primary_story_summary.json",
+      "sha256": "b3dcd0b2c4ec55fb13003e376e73f0b39e9cbc52e53b9ab364302cf98686b8c8"
+    },
+    "dojo_summary": {
+      "path": "experiments/icassp2027_dojo/reports/criterion_summary.jsonl",
+      "sha256": "b88dfc32af243ebe197b0f04f7eb9e2f88193abf528120b71ec0619cae406377"
+    },
+    "global_contrasts": {
+      "path": "experiments/icassp2027_topcoded_oof_v1/reports/hidden_tail_contrasts.jsonl",
+      "sha256": "470dab9b4e7763213ea3846cb7b038942ab045996f3c1e4bf0fda86fa413c6f5"
+    },
+    "global_hidden": {
+      "path": "experiments/icassp2027_topcoded_oof_v1/reports/hidden_tail_metrics.jsonl",
+      "sha256": "512c3509ebfdc0f2b206fc285488e0b1c3d0fdcc26ae8b5901328f9108da9e51"
+    },
+    "global_native": {
+      "path": "experiments/icassp2027_topcoded_oof_v1/reports/native_catalog_metrics.jsonl",
+      "sha256": "ff6cbc608e7933a712a28566174efb391093b4d3dc8744aaebbb19dad8d7cb34"
+    },
+    "sequence_contrasts": {
+      "path": "experiments/icassp2027_sequence_oof/reports/hidden_tail_contrasts.jsonl",
+      "sha256": "85e7bf370096d05c4789e6ef3153c8ee14ed778a5919ae7ca85eb4d0a57c7fb3"
+    },
+    "sequence_hidden": {
+      "path": "experiments/icassp2027_sequence_oof/reports/hidden_tail_metrics.jsonl",
+      "sha256": "de45d67745248559f5bbe94e27ff200bd0fcfc17c997fb1577608aa6c8bc2c7b"
+    },
+    "sequence_manifest": {
+      "path": "experiments/icassp2027_sequence_oof/OOF_RELEASE_MANIFEST.json",
+      "sha256": "12212321de581c08dab6609d19e66168ebfdb75fbf80c2e338fd0735288d1094"
+    },
+    "sequence_metrics": {
+      "path": "experiments/icassp2027_sequence_oof/canonical/sequence_metrics.jsonl",
+      "sha256": "001a015e620f039415a96cc2e3f251217c6ecf3c07b4b9874af76d73d25395ae"
+    },
+    "sequence_representation_contrasts": {
+      "path": "experiments/icassp2027_sequence_oof/reports/representation_contrasts.jsonl",
+      "sha256": "21fde23721d8da2cd2a50c379fe93e1a8a47e9f0a17746adeb98cf4417431f4a"
+    }
+  },
+  "table_rows": [
+    {
+      "condition": "ordinary_huber",
+      "family": "global",
+      "label": "Huber (ordinary)",
+      "scores": {
+        "cap7": 0.49330759879661434,
+        "cap8": 0.6398654477753982,
+        "cap9": 0.6357655626961232,
+        "native": 0.8808717598956072
+      }
+    },
+    {
+      "condition": "topcoded_huber",
+      "family": "global",
+      "label": "Huber (one-sided)",
+      "scores": {
+        "cap7": 0.7222137676898379,
+        "cap8": 0.7319134636700696,
+        "cap9": 0.6794604894622364,
+        "native": 0.883162133508553
+      }
+    },
+    {
+      "condition": "ridge",
+      "family": "global",
+      "label": "Ridge",
+      "scores": {
+        "cap7": 0.4713130475417174,
+        "cap8": 0.5889022070383216,
+        "cap9": 0.5872545618375524,
+        "native": 0.875697055758978
+      }
+    },
+    {
+      "condition": "gbdt",
+      "family": "global",
+      "label": "GBDT",
+      "scores": {
+        "cap7": 0.348809456118957,
+        "cap8": 0.4349521990545138,
+        "cap9": 0.5992947470686959,
+        "native": 0.896954990574791
+      }
+    },
+    {
+      "condition": "ordinal_logit",
+      "family": "global",
+      "label": "Cumulative logit",
+      "scores": {
+        "cap7": 0.8113358076189408,
+        "cap8": 0.7613436040869892,
+        "cap9": 0.6925952369871201,
+        "native": 0.8781947956739128
+      }
+    },
+    {
+      "condition": "ordinal_probit",
+      "family": "global",
+      "label": "Cumulative probit",
+      "scores": {
+        "cap7": 0.8086635817322748,
+        "cap8": 0.760381167889512,
+        "cap9": 0.6896618100398961,
+        "native": 0.8799849481932921
+      }
+    },
+    {
+      "condition": "ordinal_logit_reduction",
+      "family": "global",
+      "label": "Ordinal reduction",
+      "scores": {
+        "cap7": 0.7952582680339684,
+        "cap8": 0.7657869965439336,
+        "cap9": 0.741762975221935,
+        "native": 0.8896453829906964
+      }
+    },
+    {
+      "condition": "seq_ordinary_huber",
+      "family": "sequence",
+      "label": "Transformer + ordinary Huber",
+      "scores": {
+        "cap7": {
+          "point": 0.415262025284413,
+          "seed_sd": null
+        },
+        "cap8": {
+          "point": 0.4536460909311811,
+          "seed_sd": 0.03292815986481107
+        },
+        "cap9": {
+          "point": 0.47547786040079176,
+          "seed_sd": null
+        }
+      }
+    },
+    {
+      "condition": "seq_topcoded_huber",
+      "family": "sequence",
+      "label": "Transformer + one-sided Huber",
+      "scores": {
+        "cap8": {
+          "point": 0.6708065837027106,
+          "seed_sd": 0.010184786440552577
+        }
+      }
+    },
+    {
+      "condition": "seq_ordinal_logit",
+      "family": "sequence",
+      "label": "Transformer + cumulative logit",
+      "scores": {
+        "cap7": {
+          "point": 0.6978251372703477,
+          "seed_sd": null
+        },
+        "cap8": {
+          "point": 0.718432703600944,
+          "seed_sd": 0.003382791427917969
+        },
+        "cap9": {
+          "point": 0.7009139104195464,
+          "seed_sd": null
+        },
+        "native": {
+          "point": 0.8850126419928025,
+          "seed_sd": 0.0013746116690346517
+        }
+      }
+    }
+  ]
+}

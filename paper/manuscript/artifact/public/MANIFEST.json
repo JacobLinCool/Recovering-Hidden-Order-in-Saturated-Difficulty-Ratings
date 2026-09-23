@@ -1,0 +1,107 @@
+{
+  "files": {
+    "EXPERIMENT_SPEC.md": {
+      "sha256": "e1f4b87073608c29bc1920d8408e671d9230b1e246308f4831fa5dc21f80824d",
+      "size_bytes": 3294
+    },
+    "README.md": {
+      "sha256": "9dd407d5bc9f851f3dcb7f2362deee04bab8cb570585927d06a941edc39aa0b9",
+      "size_bytes": 1583
+    },
+    "REPRODUCE.md": {
+      "sha256": "563c8d5f75adb49ce14978579fa505608957cb3f0931c9475358205f03c1c117",
+      "size_bytes": 1792
+    },
+    "dojo_DATA.md": {
+      "sha256": "650b1dcecdc65fe39ec9e1ab52caea80f288d7fca1be9712b284d20726049f81",
+      "size_bytes": 548
+    },
+    "dojo_config.json": {
+      "sha256": "1623e7cae19b601ac7f30b38c6432be0f1252ec498bcd008737c03f43a787541",
+      "size_bytes": 681
+    },
+    "dojo_criterion_summary.jsonl": {
+      "sha256": "dff5599f39ea78f25583db3548b0341bd38093195e40b28defaa4ff1cf7d89e3",
+      "size_bytes": 3440
+    },
+    "dojo_leave_one_year_out.jsonl": {
+      "sha256": "f07c83aa4606989f3b9a70ce1722e787659c428068131b8dee5d604726ee2f7f",
+      "size_bytes": 3292
+    },
+    "dojo_per_year_metrics.jsonl": {
+      "sha256": "65dd724a6d49c09d277b7758d9b185a083308edf9f4851f942a10ff4ce783534",
+      "size_bytes": 3959
+    },
+    "dojo_public_matches.jsonl": {
+      "sha256": "b04970e5d8ee7309470f59aef6ea562b7a873a42cc135e49b00717bb3afdac62",
+      "size_bytes": 36106
+    },
+    "dojo_source_manifest.json": {
+      "sha256": "3387f714e52666925aa8fb22be242e0c6aa2e0b30c83938a34a3bdfc134f9423",
+      "size_bytes": 3474
+    },
+    "global_hidden_tail_contrasts.jsonl": {
+      "sha256": "470dab9b4e7763213ea3846cb7b038942ab045996f3c1e4bf0fda86fa413c6f5",
+      "size_bytes": 12665
+    },
+    "global_hidden_tail_metrics.jsonl": {
+      "sha256": "512c3509ebfdc0f2b206fc285488e0b1c3d0fdcc26ae8b5901328f9108da9e51",
+      "size_bytes": 17408
+    },
+    "global_oof_scores.jsonl": {
+      "sha256": "d1771df8ca0c85594343e3c3f0b18f1177ec14bc0f384814c08f40dcf1138ada",
+      "size_bytes": 8433683
+    },
+    "global_primary_config.json": {
+      "sha256": "ef7a1f3450573912e2f9187cc5e6c36a1a3d7ad681f8022402b7622a051d5b1d",
+      "size_bytes": 1248
+    },
+    "paper_evidence.json": {
+      "sha256": "ac78c57cc3344dc8510eb7ae4e253cd5b257a55c00bd7ee82dfdb8c9dab718ee",
+      "size_bytes": 9588
+    },
+    "privacy_report.json": {
+      "sha256": "63c404c022ab56e55cf617449449b885da9aed353ffbc1d8ea4b42f3f9c11819",
+      "size_bytes": 125
+    },
+    "reproducibility_inventory.json": {
+      "sha256": "f1bbc800dcf311f670cdec6f5655954e1062dfe2218ddd24cdd180dfd0ddaf06",
+      "size_bytes": 3082
+    },
+    "sequence_fold_runs.jsonl": {
+      "sha256": "13226a9cb8805233afebcb3f906ad2fd3e657300c73d64036a95188c070a2103",
+      "size_bytes": 31890
+    },
+    "sequence_hidden_tail_contrasts.jsonl": {
+      "sha256": "85e7bf370096d05c4789e6ef3153c8ee14ed778a5919ae7ca85eb4d0a57c7fb3",
+      "size_bytes": 8469
+    },
+    "sequence_hidden_tail_metrics.jsonl": {
+      "sha256": "de45d67745248559f5bbe94e27ff200bd0fcfc17c997fb1577608aa6c8bc2c7b",
+      "size_bytes": 7275
+    },
+    "sequence_metrics.jsonl": {
+      "sha256": "001a015e620f039415a96cc2e3f251217c6ecf3c07b4b9874af76d73d25395ae",
+      "size_bytes": 22986
+    },
+    "sequence_oof_scores.jsonl": {
+      "sha256": "ce0bc28c65ff5f6da8f6083d3f905fd871731c0c6ef6c45886420715c334cc6e",
+      "size_bytes": 2967383
+    },
+    "sequence_primary_config.json": {
+      "sha256": "c878ec770fc619cb3dd4a9255d713308c8313d7b8d5298563777a8608c2cefa4",
+      "size_bytes": 1668
+    },
+    "sequence_representation_contrasts.jsonl": {
+      "sha256": "21fde23721d8da2cd2a50c379fe93e1a8a47e9f0a17746adeb98cf4417431f4a",
+      "size_bytes": 6384
+    }
+  },
+  "privacy_scan": {
+    "files_scanned": 25,
+    "forbidden_findings": 0,
+    "schema_version": "public_artifact_privacy_scan",
+    "status": "pass"
+  },
+  "schema_version": "icassp2027_public_artifact_v2"
+}

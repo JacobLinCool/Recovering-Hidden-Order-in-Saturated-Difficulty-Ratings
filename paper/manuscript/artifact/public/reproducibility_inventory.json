@@ -1,0 +1,46 @@
+{
+  "current_release_source": {
+    "aggregate_sha256": "46a6254f88681132a84b8a5842cc9ed943b8d5d0e64e818f59fc15dee7304093",
+    "files": {
+      "TaikoChartEstimator/research/data.py": "a1c637be552cd9ca3bb54611214e05faf3c61c9ec2d8d8d7f6ee1bd83860d258",
+      "TaikoChartEstimator/research/dojo.py": "8cfce6299455042fcfa5ae0d7db4047502e96fafc8ef6cbfe7c321c3343061ff",
+      "TaikoChartEstimator/research/evidence.py": "cac5d3e0b31323090c3e84d4b902d2c0cb422b44048f33e9ecdbcd208726af09",
+      "TaikoChartEstimator/research/oof.py": "99dd286937c3e83d678d3b36e62bac258744b6f800643009a9b8b5a51886a676",
+      "TaikoChartEstimator/research/release.py": "16561a53f0599b8f5bcf38c650f24e2a51666f4158c08edac6e2e855863f6d9c",
+      "paper/icassp2027/figures/hidden_order_protocol.tex": "478031a5a93d058a22a62ae28192456b13d6de75826143aef5bbec368b3c6938",
+      "pyproject.toml": "81a0a89531ad11ba0702680dfe426e064a6d6c784a6145f36124ef97adb825a8",
+      "scripts/research/analyze_dojo_criterion.py": "670459d4411073dec63dd1082522beee90b2e38fdb81ab9e293fed23b58a1450",
+      "scripts/research/analyze_sequence_oof.py": "38a897aef65dd74d3c82779e13fe3e60b3d67d1a83530a2078c30a90fa0c169f",
+      "scripts/research/analyze_topcoded_oof.py": "cf4417248beccd2b06427379183d007454b51bd2ecb4cc6615b2fd89574465a8",
+      "scripts/research/build_public_artifact.py": "8b57dc3048f98efc5a324f0368dc1bd857118dd580837070279710a863f0ac78",
+      "scripts/research/make_dojo_criterion_figure.py": "c395ce0d97e06d512cf135c9da8482a20e7360e73b5fb354a3e27c50f1685855",
+      "scripts/research/make_hidden_order_paper_artifacts.py": "fcc609d6b3f7b4ecf11af04c2deb1f5279a401f2eeea2d6240c9208dd0089b7c",
+      "scripts/research/make_hidden_order_protocol_figure.py": "9b9070c26cfcabbf7e34883fb3e82638981eb33a4e4a1e3127decc150d8b84aa",
+      "scripts/research/verify_hidden_order_submission.py": "cfcdc55edd6ce01ce3526dd4939f5265dcf672df5aa6a03ca5a3eedc91fe90cc",
+      "uv.lock": "1a37aa47463884daff71ceb73f40c3cf7c01d5e899c3a69904a20c0db3844e1e"
+    },
+    "schema_version": "explicit_research_source"
+  },
+  "environment": {
+    "pyproject_sha256": "81a0a89531ad11ba0702680dfe426e064a6d6c784a6145f36124ef97adb825a8",
+    "uv_lock_sha256": "1a37aa47463884daff71ceb73f40c3cf7c01d5e899c3a69904a20c0db3844e1e"
+  },
+  "global_oof_release": {
+    "path": "experiments/icassp2027_topcoded_oof_v1/OOF_RELEASE_MANIFEST.json",
+    "sha256": "57cb7ff9ffcb09bbefc6c679325a642de769f8ce95207466e6a46a1020b756bb",
+    "source_kind": "frozen_title_grouped_out_of_fold_predictions"
+  },
+  "public_boundary": {
+    "audio": "excluded",
+    "chart_titles": "excluded",
+    "human_participant_data": "not_used",
+    "public_course_facts": "derived rows and source hashes included",
+    "raw_charts": "excluded"
+  },
+  "schema_version": "icassp2027_reproducibility_inventory_v2",
+  "sequence_oof_release": {
+    "path": "experiments/icassp2027_sequence_oof/OOF_RELEASE_MANIFEST.json",
+    "sha256": "12212321de581c08dab6609d19e66168ebfdb75fbf80c2e338fd0735288d1094",
+    "source_kind": "frozen_title_grouped_sequence_oof_predictions"
+  }
+}

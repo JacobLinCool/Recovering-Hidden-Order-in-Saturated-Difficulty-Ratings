@@ -1,0 +1,2210 @@
+{
+  "schema_version": "ceiling_compression_v1",
+  "description": "Placement of capped-group outputs relative to the merged rating c; diagnostic of why exact-target models rank the capped group poorly.",
+  "definitions": {
+    "capped_group": "charts whose original rating is >= c (the paper's hidden-tail panel)",
+    "near_fraction": "share of capped-group rating-scale outputs with |output - c| <= delta",
+    "near_rho": "Spearman correlation between original rating and latent_score among near-cap charts (undefined when fewer than 5 charts)",
+    "median_by_original": "median rating-scale output of capped charts by original rating",
+    "above_fraction": "share of capped-group rating-scale outputs with output > c + delta",
+    "near_rho_macro_rule": "near_rho macros only when near_count >= 30 and every bootstrap replicate defines it",
+    "rank_tie_pair_fraction": "share of capped-group chart pairs with exactly equal latent_score",
+    "primary": {
+      "scenario": "cap8",
+      "delta": 0.05
+    },
+    "sequence_scores": "Transformer cap-8 scores are the frozen three-seed ensemble in the public artifact; caps 7/9 are single seed"
+  },
+  "inputs": {
+    "paper/manuscript/artifact/public/global_oof_scores.jsonl": "d1771df8ca0c85594343e3c3f0b18f1177ec14bc0f384814c08f40dcf1138ada",
+    "paper/manuscript/artifact/public/sequence_oof_scores.jsonl": "ce0bc28c65ff5f6da8f6083d3f905fd871731c0c6ef6c45886420715c334cc6e",
+    "experiments/icassp2027_topcoded_oof_v1/canonical/fold_assignments.jsonl": "5dda3b9a9ef6fc56c53bba601c6d61d98661cee950db5fb5ec693b7cc33c2dcd",
+    "paper/manuscript/artifact/public/global_hidden_tail_metrics.jsonl": "512c3509ebfdc0f2b206fc285488e0b1c3d0fdcc26ae8b5901328f9108da9e51",
+    "paper/manuscript/artifact/public/sequence_hidden_tail_metrics.jsonl": "de45d67745248559f5bbe94e27ff200bd0fcfc17c997fb1577608aa6c8bc2c7b"
+  },
+  "bootstrap": {
+    "method": "paired_title_cluster_resampling_within_capped_group",
+    "replicates": 10000,
+    "seed": 2027,
+    "confidence_level": 0.95,
+    "scenario": "cap8",
+    "delta": 0.05,
+    "title_clusters": 697,
+    "intervals": {
+      "ordinary_huber": {
+        "near_fraction": {
+          "ci_low": 0.1346704871060172,
+          "ci_high": 0.18945868945868946,
+          "valid_replicates": 10000
+        },
+        "near_rho": {
+          "ci_low": -0.17151507016672532,
+          "ci_high": 0.18442284312441126,
+          "valid_replicates": 10000
+        },
+        "median_8": {
+          "ci_low": 7.632568313584809,
+          "ci_high": 7.7136837196173405,
+          "valid_replicates": 10000
+        },
+        "median_9": {
+          "ci_low": 7.939448262847928,
+          "ci_high": 7.9892399486123304,
+          "valid_replicates": 10000
+        },
+        "median_10": {
+          "ci_low": 8.058915916600961,
+          "ci_high": 8.140749850041383,
+          "valid_replicates": 10000
+        }
+      },
+      "topcoded_huber": {
+        "near_fraction": {
+          "ci_low": 0.01862464183381089,
+          "ci_high": 0.04565070307723658,
+          "valid_replicates": 10000
+        },
+        "near_rho": {
+          "ci_low": 0.09972712102183226,
+          "ci_high": 0.4932062609571493,
+          "valid_replicates": 6255
+        },
+        "median_8": {
+          "ci_low": 8.157836470010677,
+          "ci_high": 8.368783531706985,
+          "valid_replicates": 10000
+        },
+        "median_9": {
+          "ci_low": 9.152602179288106,
+          "ci_high": 9.40238742283164,
+          "valid_replicates": 10000
+        },
+        "median_10": {
+          "ci_low": 10.250084239333178,
+          "ci_high": 10.61992052318271,
+          "valid_replicates": 10000
+        }
+      },
+      "ridge": {
+        "near_fraction": {
+          "ci_low": 0.09298998569384835,
+          "ci_high": 0.14122681883024252,
+          "valid_replicates": 10000
+        },
+        "near_rho": {
+          "ci_low": -0.36517015320251084,
+          "ci_high": 0.04637596281074278,
+          "valid_replicates": 10000
+        },
+        "median_8": {
+          "ci_low": 7.592138206079478,
+          "ci_high": 7.705977601899304,
+          "valid_replicates": 10000
+        },
+        "median_9": {
+          "ci_low": 7.934242594228772,
+          "ci_high": 8.006284976245908,
+          "valid_replicates": 10000
+        },
+        "median_10": {
+          "ci_low": 8.067570275023602,
+          "ci_high": 8.171276445396401,
+          "valid_replicates": 10000
+        }
+      },
+      "gbdt": {
+        "near_fraction": {
+          "ci_low": 0.5214285714285715,
+          "ci_high": 0.5951359084406295,
+          "valid_replicates": 10000
+        },
+        "near_rho": {
+          "ci_low": -0.07490751666156938,
+          "ci_high": 0.12859217449580468,
+          "valid_replicates": 10000
+        },
+        "median_8": {
+          "ci_low": 7.8058517129711475,
+          "ci_high": 7.890300967131554,
+          "valid_replicates": 10000
+        },
+        "median_9": {
+          "ci_low": 7.988212648730366,
+          "ci_high": 7.996984130384868,
+          "valid_replicates": 10000
+        },
+        "median_10": {
+          "ci_low": 7.9956259762039394,
+          "ci_high": 7.9999639452463525,
+          "valid_replicates": 10000
+        }
+      },
+      "ordinal_logit": {
+        "near_fraction": {
+          "ci_low": 0.5593705293276109,
+          "ci_high": 0.6319637897220197,
+          "valid_replicates": 10000
+        },
+        "near_rho": {
+          "ci_low": 0.6202603402926047,
+          "ci_high": 0.7372320853397225,
+          "valid_replicates": 10000
+        },
+        "median_8": {
+          "ci_low": 7.791864168079167,
+          "ci_high": 7.873001347767506,
+          "valid_replicates": 10000
+        },
+        "median_9": {
+          "ci_low": 7.98109522688177,
+          "ci_high": 7.991845600148703,
+          "valid_replicates": 10000
+        },
+        "median_10": {
+          "ci_low": 7.999512107522133,
+          "ci_high": 7.999771679348605,
+          "valid_replicates": 10000
+        }
+      },
+      "ordinal_probit": {
+        "near_fraction": {
+          "ci_low": 0.5585714285714286,
+          "ci_high": 0.6310541310541311,
+          "valid_replicates": 10000
+        },
+        "near_rho": {
+          "ci_low": 0.6164109849029163,
+          "ci_high": 0.7358743105361117,
+          "valid_replicates": 10000
+        },
+        "median_8": {
+          "ci_low": 7.7892605007964075,
+          "ci_high": 7.875566637822483,
+          "valid_replicates": 10000
+        },
+        "median_9": {
+          "ci_low": 7.989987221176771,
+          "ci_high": 7.996936011247645,
+          "valid_replicates": 10000
+        },
+        "median_10": {
+          "ci_low": 7.9999853765588504,
+          "ci_high": 7.999996651172652,
+          "valid_replicates": 10000
+        }
+      },
+      "ordinal_logit_reduction": {
+        "near_fraction": {
+          "ci_low": 0.5659025787965616,
+          "ci_high": 0.6385714285714286,
+          "valid_replicates": 10000
+        },
+        "near_rho": {
+          "ci_low": 0.6244833355767757,
+          "ci_high": 0.7354229556945407,
+          "valid_replicates": 10000
+        },
+        "median_8": {
+          "ci_low": 7.800481256724069,
+          "ci_high": 7.885148445846957,
+          "valid_replicates": 10000
+        },
+        "median_9": {
+          "ci_low": 7.988014962565229,
+          "ci_high": 7.994560078604806,
+          "valid_replicates": 10000
+        },
+        "median_10": {
+          "ci_low": 7.9996101653294085,
+          "ci_high": 7.9998396798589875,
+          "valid_replicates": 10000
+        }
+      },
+      "seq_ordinary_huber": {
+        "near_fraction": {
+          "ci_low": 0.16523628892049944,
+          "ci_high": 0.22428571428571428,
+          "valid_replicates": 10000
+        },
+        "near_rho": {
+          "ci_low": -0.28903349015329144,
+          "ci_high": 0.037787713853574066,
+          "valid_replicates": 10000
+        },
+        "median_8": {
+          "ci_low": 7.695619980494182,
+          "ci_high": 7.784427642822266,
+          "valid_replicates": 10000
+        },
+        "median_9": {
+          "ci_low": 7.9083913167317705,
+          "ci_high": 7.97298018137614,
+          "valid_replicates": 10000
+        },
+        "median_10": {
+          "ci_low": 7.970357259114583,
+          "ci_high": 8.010533014933268,
+          "valid_replicates": 10000
+        }
+      },
+      "seq_topcoded_huber": {
+        "near_fraction": {
+          "ci_low": 0.018571428571428572,
+          "ci_high": 0.04297994269340974,
+          "valid_replicates": 10000
+        },
+        "near_rho": {
+          "ci_low": -0.7005493680308931,
+          "ci_high": 0.22404976379330094,
+          "valid_replicates": 9997
+        },
+        "median_8": {
+          "ci_low": 7.94198735555013,
+          "ci_high": 8.131336603562039,
+          "valid_replicates": 10000
+        },
+        "median_9": {
+          "ci_low": 8.665218989054361,
+          "ci_high": 8.885793685913086,
+          "valid_replicates": 10000
+        },
+        "median_10": {
+          "ci_low": 9.24181842803955,
+          "ci_high": 9.395137151082357,
+          "valid_replicates": 10000
+        }
+      },
+      "seq_ordinal_logit": {
+        "near_fraction": {
+          "ci_low": 0.5342857142857143,
+          "ci_high": 0.608263589988841,
+          "valid_replicates": 10000
+        },
+        "near_rho": {
+          "ci_low": 0.4928009212920798,
+          "ci_high": 0.6250919254648809,
+          "valid_replicates": 10000
+        },
+        "median_8": {
+          "ci_low": 7.798651059468587,
+          "ci_high": 7.870608647664388,
+          "valid_replicates": 10000
+        },
+        "median_9": {
+          "ci_low": 7.968021551767985,
+          "ci_high": 7.978148619333903,
+          "valid_replicates": 10000
+        },
+        "median_10": {
+          "ci_low": 7.991909027099609,
+          "ci_high": 7.993827819824219,
+          "valid_replicates": 10000
+        }
+      }
+    }
+  },
+  "consistency_checks": {
+    "capped_group_spearman_matches_frozen_metrics": [
+      "cap7/ordinary_huber",
+      "cap7/topcoded_huber",
+      "cap7/ridge",
+      "cap7/gbdt",
+      "cap7/ordinal_logit",
+      "cap7/ordinal_probit",
+      "cap7/ordinal_logit_reduction",
+      "cap7/seq_ordinary_huber",
+      "cap7/seq_ordinal_logit",
+      "cap8/ordinary_huber",
+      "cap8/topcoded_huber",
+      "cap8/ridge",
+      "cap8/gbdt",
+      "cap8/ordinal_logit",
+      "cap8/ordinal_probit",
+      "cap8/ordinal_logit_reduction",
+      "cap8/seq_ordinary_huber",
+      "cap8/seq_topcoded_huber",
+      "cap8/seq_ordinal_logit",
+      "cap9/ordinary_huber",
+      "cap9/topcoded_huber",
+      "cap9/ridge",
+      "cap9/gbdt",
+      "cap9/ordinal_logit",
+      "cap9/ordinal_probit",
+      "cap9/ordinal_logit_reduction",
+      "cap9/seq_ordinary_huber",
+      "cap9/seq_ordinal_logit"
+    ],
+    "matches_lead_preliminary_cap8_delta005": [
+      "gbdt",
+      "ordinary_huber",
+      "ridge",
+      "ordinal_logit_reduction",
+      "topcoded_huber"
+    ]
+  },
+  "results": {
+    "cap7": {
+      "ordinary_huber": {
+        "label": "Huber (ordinary)",
+        "target_kind": "exact_target",
+        "rating_scale_field": "latent_score",
+        "rating_scale_note": "evaluated score is itself on the rating scale",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 893,
+        "title_clusters": 890,
+        "capped_group_spearman": 0.49330759879661434,
+        "rank_tie_pair_fraction": 5.021618065773153e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 80,
+            "near_fraction": 0.08958566629339305,
+            "above_count": 332,
+            "above_fraction": 0.3717805151175812,
+            "near_rho": -0.11323255370028579,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 5,
+              "8": 32,
+              "9": 22,
+              "10": 21
+            }
+          },
+          "0.05": {
+            "near_count": 226,
+            "near_fraction": 0.2530795072788354,
+            "above_count": 250,
+            "above_fraction": 0.2799552071668533,
+            "near_rho": 0.06326715747309664,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 10,
+              "8": 94,
+              "9": 64,
+              "10": 58
+            }
+          },
+          "0.10": {
+            "near_count": 417,
+            "near_fraction": 0.4669652855543113,
+            "above_count": 143,
+            "above_fraction": 0.1601343784994401,
+            "near_rho": 0.12199866210137056,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 28,
+              "8": 178,
+              "9": 114,
+              "10": 97
+            }
+          }
+        },
+        "median_by_original": {
+          "7": 6.752672101091422,
+          "8": 6.95818196694343,
+          "9": 7.052050573874444,
+          "10": 7.012967610205404
+        },
+        "rating_output_max": 7.396542039943369
+      },
+      "topcoded_huber": {
+        "label": "Huber (one-sided)",
+        "target_kind": "lower_bound",
+        "rating_scale_field": "latent_score",
+        "rating_scale_note": "evaluated score is itself on the rating scale",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 893,
+        "title_clusters": 890,
+        "capped_group_spearman": 0.7222137676898379,
+        "rank_tie_pair_fraction": 5.021618065773153e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 5,
+            "near_fraction": 0.005599104143337066,
+            "above_count": 808,
+            "above_fraction": 0.9048152295632699,
+            "near_rho": -0.35355339059327373,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 4,
+              "8": 1,
+              "9": 0,
+              "10": 0
+            }
+          },
+          "0.05": {
+            "near_count": 12,
+            "near_fraction": 0.013437849944008958,
+            "above_count": 803,
+            "above_fraction": 0.8992161254199328,
+            "near_rho": 0.09245003270420486,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 8,
+              "8": 3,
+              "9": 1,
+              "10": 0
+            }
+          },
+          "0.10": {
+            "near_count": 35,
+            "near_fraction": 0.03919372900335946,
+            "above_count": 789,
+            "above_fraction": 0.883538633818589,
+            "near_rho": -0.12659161584365605,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 23,
+              "8": 9,
+              "9": 2,
+              "10": 1
+            }
+          }
+        },
+        "median_by_original": {
+          "7": 7.3012702185751905,
+          "8": 8.12889901209972,
+          "9": 8.802797483297045,
+          "10": 9.620514607740148
+        },
+        "rating_output_max": 40.45984363453755
+      },
+      "ridge": {
+        "label": "Ridge",
+        "target_kind": "exact_target",
+        "rating_scale_field": "latent_score",
+        "rating_scale_note": "evaluated score is itself on the rating scale",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 893,
+        "title_clusters": 890,
+        "capped_group_spearman": 0.4713130475417174,
+        "rank_tie_pair_fraction": 5.021618065773153e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 56,
+            "near_fraction": 0.06270996640537514,
+            "above_count": 340,
+            "above_fraction": 0.3807390817469205,
+            "near_rho": 0.054741528441440715,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 7,
+              "8": 21,
+              "9": 17,
+              "10": 11
+            }
+          },
+          "0.05": {
+            "near_count": 161,
+            "near_fraction": 0.18029115341545351,
+            "above_count": 293,
+            "above_fraction": 0.3281075027995521,
+            "near_rho": 0.10165010656793476,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 16,
+              "8": 74,
+              "9": 35,
+              "10": 36
+            }
+          },
+          "0.10": {
+            "near_count": 320,
+            "near_fraction": 0.3583426651735722,
+            "above_count": 206,
+            "above_fraction": 0.23068309070548712,
+            "near_rho": 0.10186183388880761,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 28,
+              "8": 134,
+              "9": 77,
+              "10": 81
+            }
+          }
+        },
+        "median_by_original": {
+          "7": 6.687401839040726,
+          "8": 6.95265923772894,
+          "9": 7.075996196725823,
+          "10": 7.028856939418074
+        },
+        "rating_output_max": 7.618896833115384
+      },
+      "gbdt": {
+        "label": "GBDT",
+        "target_kind": "exact_target",
+        "rating_scale_field": "latent_score",
+        "rating_scale_note": "evaluated score is itself on the rating scale",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 893,
+        "title_clusters": 890,
+        "capped_group_spearman": 0.348809456118957,
+        "rank_tie_pair_fraction": 3.012970839463892e-05,
+        "by_delta": {
+          "0.02": {
+            "near_count": 393,
+            "near_fraction": 0.4400895856662934,
+            "above_count": 133,
+            "above_fraction": 0.14893617021276595,
+            "near_rho": 0.003018901304938824,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 22,
+              "8": 106,
+              "9": 128,
+              "10": 137
+            }
+          },
+          "0.05": {
+            "near_count": 540,
+            "near_fraction": 0.6047032474804032,
+            "above_count": 71,
+            "above_fraction": 0.07950727883538634,
+            "near_rho": 0.05073342808616435,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 42,
+              "8": 170,
+              "9": 169,
+              "10": 159
+            }
+          },
+          "0.10": {
+            "near_count": 655,
+            "near_fraction": 0.7334826427771557,
+            "above_count": 36,
+            "above_fraction": 0.040313549832026875,
+            "near_rho": 0.08671489898238359,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 68,
+              "8": 219,
+              "9": 188,
+              "10": 180
+            }
+          }
+        },
+        "median_by_original": {
+          "7": 6.843132833120079,
+          "8": 6.986728378176394,
+          "9": 7.000763585175145,
+          "10": 7.000005118129905
+        },
+        "rating_output_max": 7.581247500829731
+      },
+      "ordinal_logit": {
+        "label": "Cumulative logit",
+        "target_kind": "ordinal_cumulative",
+        "rating_scale_field": "expected_observed_label",
+        "rating_scale_note": "evaluated latent score is on another scale; rating-scale output is the model's expected observed rating (cumulative: bounded by the cap; Transformer Huber: de-standardized prediction averaged over seeds, rank-consistent with the latent score up to seed averaging; see rating_vs_latent_spearman)",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 893,
+        "title_clusters": 890,
+        "capped_group_spearman": 0.8113358076189408,
+        "rank_tie_pair_fraction": 5.021618065773153e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 564,
+            "near_fraction": 0.631578947368421,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.7323033942755314,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 18,
+              "8": 170,
+              "9": 189,
+              "10": 187
+            }
+          },
+          "0.05": {
+            "near_count": 663,
+            "near_fraction": 0.7424412094064949,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.7733932886766818,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 47,
+              "8": 233,
+              "9": 195,
+              "10": 188
+            }
+          },
+          "0.10": {
+            "near_count": 730,
+            "near_fraction": 0.8174692049272116,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.7851803405631944,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 80,
+              "8": 261,
+              "9": 200,
+              "10": 189
+            }
+          }
+        },
+        "median_by_original": {
+          "7": 6.853524687045423,
+          "8": 6.986780088570752,
+          "9": 6.999273142205899,
+          "10": 6.999985769171298
+        },
+        "rating_output_max": 7.0,
+        "rating_vs_latent_spearman": 0.985583355566913
+      },
+      "ordinal_probit": {
+        "label": "Cumulative probit",
+        "target_kind": "ordinal_cumulative",
+        "rating_scale_field": "expected_observed_label",
+        "rating_scale_note": "evaluated latent score is on another scale; rating-scale output is the model's expected observed rating (cumulative: bounded by the cap; Transformer Huber: de-standardized prediction averaged over seeds, rank-consistent with the latent score up to seed averaging; see rating_vs_latent_spearman)",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 893,
+        "title_clusters": 890,
+        "capped_group_spearman": 0.8086635817322748,
+        "rank_tie_pair_fraction": 5.021618065773153e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 594,
+            "near_fraction": 0.6651735722284434,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.7446988714141038,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 22,
+              "8": 194,
+              "9": 191,
+              "10": 187
+            }
+          },
+          "0.05": {
+            "near_count": 665,
+            "near_fraction": 0.7446808510638298,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.7700119426914577,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 49,
+              "8": 233,
+              "9": 195,
+              "10": 188
+            }
+          },
+          "0.10": {
+            "near_count": 727,
+            "near_fraction": 0.8141097424412094,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.780975354282369,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 78,
+              "8": 261,
+              "9": 199,
+              "10": 189
+            }
+          }
+        },
+        "median_by_original": {
+          "7": 6.859569192236562,
+          "8": 6.992031381005295,
+          "9": 6.999946264244766,
+          "10": 6.999999999426162
+        },
+        "rating_output_max": 7.0,
+        "rating_vs_latent_spearman": 0.9836975091881752
+      },
+      "ordinal_logit_reduction": {
+        "label": "Ordinal reduction",
+        "target_kind": "ordinal_binary_reduction",
+        "rating_scale_field": "latent_score",
+        "rating_scale_note": "evaluated score is itself on the rating scale",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 893,
+        "title_clusters": 890,
+        "capped_group_spearman": 0.7952582680339684,
+        "rank_tie_pair_fraction": 5.021618065773153e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 562,
+            "near_fraction": 0.6293393057110862,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.6769552531936458,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 13,
+              "8": 174,
+              "9": 188,
+              "10": 187
+            }
+          },
+          "0.05": {
+            "near_count": 664,
+            "near_fraction": 0.7435610302351624,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.7323642659628502,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 48,
+              "8": 231,
+              "9": 196,
+              "10": 189
+            }
+          },
+          "0.10": {
+            "near_count": 727,
+            "near_fraction": 0.8141097424412094,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.7557783954760245,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 78,
+              "8": 259,
+              "9": 201,
+              "10": 189
+            }
+          }
+        },
+        "median_by_original": {
+          "7": 6.863643826322726,
+          "8": 6.987003979921244,
+          "9": 6.999225150765291,
+          "10": 6.999956100129509
+        },
+        "rating_output_max": 7.0
+      },
+      "seq_ordinary_huber": {
+        "label": "Transformer + ordinary Huber",
+        "target_kind": "exact_target",
+        "rating_scale_field": "expected_observed_label",
+        "rating_scale_note": "evaluated latent score is on another scale; rating-scale output is the model's expected observed rating (cumulative: bounded by the cap; Transformer Huber: de-standardized prediction averaged over seeds, rank-consistent with the latent score up to seed averaging; see rating_vs_latent_spearman)",
+        "rank_field": "latent_score",
+        "seeds": [
+          2027
+        ],
+        "capped_count": 893,
+        "title_clusters": 890,
+        "capped_group_spearman": 0.415262025284413,
+        "rank_tie_pair_fraction": 5.021618065773153e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 215,
+            "near_fraction": 0.24076147816349383,
+            "above_count": 174,
+            "above_fraction": 0.1948488241881299,
+            "near_rho": 0.2560164433868019,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 25,
+              "8": 75,
+              "9": 47,
+              "10": 68
+            }
+          },
+          "0.05": {
+            "near_count": 418,
+            "near_fraction": 0.46808510638297873,
+            "above_count": 63,
+            "above_fraction": 0.07054871220604703,
+            "near_rho": 0.1879968956525743,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 46,
+              "8": 136,
+              "9": 114,
+              "10": 122
+            }
+          },
+          "0.10": {
+            "near_count": 560,
+            "near_fraction": 0.6270996640537514,
+            "above_count": 16,
+            "above_fraction": 0.01791713325867861,
+            "near_rho": 0.17173600562545094,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 62,
+              "8": 183,
+              "9": 157,
+              "10": 158
+            }
+          }
+        },
+        "median_by_original": {
+          "7": 6.770042181015015,
+          "8": 6.9646453857421875,
+          "9": 6.979595422744751,
+          "10": 6.9866554737091064
+        },
+        "rating_output_max": 7.1536054611206055,
+        "rating_vs_latent_spearman": 0.781655408777327
+      },
+      "seq_ordinal_logit": {
+        "label": "Transformer + cumulative logit",
+        "target_kind": "ordinal_cumulative",
+        "rating_scale_field": "expected_observed_label",
+        "rating_scale_note": "evaluated latent score is on another scale; rating-scale output is the model's expected observed rating (cumulative: bounded by the cap; Transformer Huber: de-standardized prediction averaged over seeds, rank-consistent with the latent score up to seed averaging; see rating_vs_latent_spearman)",
+        "rank_field": "latent_score",
+        "seeds": [
+          2027
+        ],
+        "capped_count": 893,
+        "title_clusters": 890,
+        "capped_group_spearman": 0.6978251372703477,
+        "rank_tie_pair_fraction": 5.021618065773153e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 496,
+            "near_fraction": 0.555431131019037,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.40794384462582306,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 14,
+              "8": 138,
+              "9": 165,
+              "10": 179
+            }
+          },
+          "0.05": {
+            "near_count": 637,
+            "near_fraction": 0.7133258678611423,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.5570360288657721,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 46,
+              "8": 214,
+              "9": 195,
+              "10": 182
+            }
+          },
+          "0.10": {
+            "near_count": 714,
+            "near_fraction": 0.799552071668533,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.6015328495615494,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "7": 77,
+              "8": 251,
+              "9": 199,
+              "10": 187
+            }
+          }
+        },
+        "median_by_original": {
+          "7": 6.877530097961426,
+          "8": 6.976047515869141,
+          "9": 6.991766452789307,
+          "10": 6.994510889053345
+        },
+        "rating_output_max": 6.998903274536133,
+        "rating_vs_latent_spearman": 0.9838134916703513
+      }
+    },
+    "cap8": {
+      "ordinary_huber": {
+        "label": "Huber (ordinary)",
+        "target_kind": "exact_target",
+        "rating_scale_field": "latent_score",
+        "rating_scale_note": "evaluated score is itself on the rating scale",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 699,
+        "title_clusters": 697,
+        "capped_group_spearman": 0.6398654477753982,
+        "rank_tie_pair_fraction": 4.099183852494968e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 39,
+            "near_fraction": 0.055793991416309016,
+            "above_count": 214,
+            "above_fraction": 0.3061516452074392,
+            "near_rho": 0.08190095187659442,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 11,
+              "9": 17,
+              "10": 11
+            }
+          },
+          "0.05": {
+            "near_count": 113,
+            "near_fraction": 0.16165951359084407,
+            "above_count": 175,
+            "above_fraction": 0.2503576537911302,
+            "near_rho": 0.008084435582103063,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 23,
+              "9": 57,
+              "10": 33
+            }
+          },
+          "0.10": {
+            "near_count": 189,
+            "near_fraction": 0.2703862660944206,
+            "above_count": 139,
+            "above_fraction": 0.1988555078683834,
+            "near_rho": 0.18768424043338283,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 39,
+              "9": 83,
+              "10": 67
+            }
+          }
+        },
+        "median_by_original": {
+          "8": 7.674694781443913,
+          "9": 7.963993087464589,
+          "10": 8.088115741404023
+        },
+        "rating_output_max": 8.577188905923597
+      },
+      "topcoded_huber": {
+        "label": "Huber (one-sided)",
+        "target_kind": "lower_bound",
+        "rating_scale_field": "latent_score",
+        "rating_scale_note": "evaluated score is itself on the rating scale",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 699,
+        "title_clusters": 697,
+        "capped_group_spearman": 0.7319134636700696,
+        "rank_tie_pair_fraction": 4.099183852494968e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 7,
+            "near_fraction": 0.010014306151645207,
+            "above_count": 566,
+            "above_fraction": 0.8097281831187411,
+            "near_rho": null,
+            "near_rho_undefined_reason": "fewer than 5 near-cap charts or constant input",
+            "near_original_counts": {
+              "8": 7,
+              "9": 0,
+              "10": 0
+            }
+          },
+          "0.05": {
+            "near_count": 22,
+            "near_fraction": 0.031473533619456366,
+            "above_count": 560,
+            "above_fraction": 0.8011444921316166,
+            "near_rho": 0.22357372715928564,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 21,
+              "9": 1,
+              "10": 0
+            }
+          },
+          "0.10": {
+            "near_count": 38,
+            "near_fraction": 0.05436337625178827,
+            "above_count": 553,
+            "above_fraction": 0.7911301859799714,
+            "near_rho": 0.1485735855036299,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 34,
+              "9": 4,
+              "10": 0
+            }
+          }
+        },
+        "median_by_original": {
+          "8": 8.262190989222235,
+          "9": 9.268895613873294,
+          "10": 10.412482868453534
+        },
+        "rating_output_max": 23.760166511552058
+      },
+      "ridge": {
+        "label": "Ridge",
+        "target_kind": "exact_target",
+        "rating_scale_field": "latent_score",
+        "rating_scale_note": "evaluated score is itself on the rating scale",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 699,
+        "title_clusters": 697,
+        "capped_group_spearman": 0.5889022070383216,
+        "rank_tie_pair_fraction": 4.099183852494968e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 32,
+            "near_fraction": 0.045779685264663805,
+            "above_count": 233,
+            "above_fraction": 0.3333333333333333,
+            "near_rho": -0.17606835788662772,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 4,
+              "9": 10,
+              "10": 18
+            }
+          },
+          "0.05": {
+            "near_count": 81,
+            "near_fraction": 0.11587982832618025,
+            "above_count": 206,
+            "above_fraction": 0.2947067238912732,
+            "near_rho": -0.16371680861876528,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 13,
+              "9": 36,
+              "10": 32
+            }
+          },
+          "0.10": {
+            "near_count": 160,
+            "near_fraction": 0.22889842632331903,
+            "above_count": 163,
+            "above_fraction": 0.23319027181688126,
+            "near_rho": 0.16664570875575166,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 33,
+              "9": 74,
+              "10": 53
+            }
+          }
+        },
+        "median_by_original": {
+          "8": 7.642753362902396,
+          "9": 7.95680652990611,
+          "10": 8.114295641610086
+        },
+        "rating_output_max": 8.744360572820298
+      },
+      "gbdt": {
+        "label": "GBDT",
+        "target_kind": "exact_target",
+        "rating_scale_field": "latent_score",
+        "rating_scale_note": "evaluated score is itself on the rating scale",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 699,
+        "title_clusters": 697,
+        "capped_group_spearman": 0.4349521990545138,
+        "rank_tie_pair_fraction": 4.919020622993962e-05,
+        "by_delta": {
+          "0.02": {
+            "near_count": 275,
+            "near_fraction": 0.39341917024320455,
+            "above_count": 88,
+            "above_fraction": 0.12589413447782546,
+            "near_rho": -0.010391233976932516,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 45,
+              "9": 100,
+              "10": 130
+            }
+          },
+          "0.05": {
+            "near_count": 390,
+            "near_fraction": 0.5579399141630901,
+            "above_count": 45,
+            "above_fraction": 0.06437768240343347,
+            "near_rho": 0.02802512481006314,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 78,
+              "9": 151,
+              "10": 161
+            }
+          },
+          "0.10": {
+            "near_count": 472,
+            "near_fraction": 0.6752503576537912,
+            "above_count": 20,
+            "above_fraction": 0.02861230329041488,
+            "near_rho": 0.06710773603453199,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 121,
+              "9": 173,
+              "10": 178
+            }
+          }
+        },
+        "median_by_original": {
+          "8": 7.853450551331822,
+          "9": 7.9943579173574015,
+          "10": 7.997054377912717
+        },
+        "rating_output_max": 8.300178722790655
+      },
+      "ordinal_logit": {
+        "label": "Cumulative logit",
+        "target_kind": "ordinal_cumulative",
+        "rating_scale_field": "expected_observed_label",
+        "rating_scale_note": "evaluated latent score is on another scale; rating-scale output is the model's expected observed rating (cumulative: bounded by the cap; Transformer Huber: de-standardized prediction averaged over seeds, rank-consistent with the latent score up to seed averaging; see rating_vs_latent_spearman)",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 699,
+        "title_clusters": 697,
+        "capped_group_spearman": 0.7613436040869892,
+        "rank_tie_pair_fraction": 4.099183852494968e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 336,
+            "near_fraction": 0.48068669527896996,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.6321804219213659,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 35,
+              "9": 123,
+              "10": 178
+            }
+          },
+          "0.05": {
+            "near_count": 417,
+            "near_fraction": 0.5965665236051502,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.6813187671053418,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 77,
+              "9": 154,
+              "10": 186
+            }
+          },
+          "0.10": {
+            "near_count": 480,
+            "near_fraction": 0.6866952789699571,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.727719287076796,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 120,
+              "9": 173,
+              "10": 187
+            }
+          }
+        },
+        "median_by_original": {
+          "8": 7.824480012915029,
+          "9": 7.988255827619483,
+          "10": 7.999687510158449
+        },
+        "rating_output_max": 7.999999999999989,
+        "rating_vs_latent_spearman": 0.9937144050657902
+      },
+      "ordinal_probit": {
+        "label": "Cumulative probit",
+        "target_kind": "ordinal_cumulative",
+        "rating_scale_field": "expected_observed_label",
+        "rating_scale_note": "evaluated latent score is on another scale; rating-scale output is the model's expected observed rating (cumulative: bounded by the cap; Transformer Huber: de-standardized prediction averaged over seeds, rank-consistent with the latent score up to seed averaging; see rating_vs_latent_spearman)",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 699,
+        "title_clusters": 697,
+        "capped_group_spearman": 0.760381167889512,
+        "rank_tie_pair_fraction": 4.099183852494968e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 353,
+            "near_fraction": 0.5050071530758226,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.6411433852959594,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 42,
+              "9": 130,
+              "10": 181
+            }
+          },
+          "0.05": {
+            "near_count": 416,
+            "near_fraction": 0.5951359084406295,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.6791160354315897,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 74,
+              "9": 156,
+              "10": 186
+            }
+          },
+          "0.10": {
+            "near_count": 486,
+            "near_fraction": 0.6952789699570815,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.7291077452054626,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 124,
+              "9": 175,
+              "10": 187
+            }
+          }
+        },
+        "median_by_original": {
+          "8": 7.834668850566817,
+          "9": 7.993735596945114,
+          "10": 7.999993727271503
+        },
+        "rating_output_max": 8.0,
+        "rating_vs_latent_spearman": 0.9961988240758967
+      },
+      "ordinal_logit_reduction": {
+        "label": "Ordinal reduction",
+        "target_kind": "ordinal_binary_reduction",
+        "rating_scale_field": "latent_score",
+        "rating_scale_note": "evaluated score is itself on the rating scale",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 699,
+        "title_clusters": 697,
+        "capped_group_spearman": 0.7657869965439336,
+        "rank_tie_pair_fraction": 4.099183852494968e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 367,
+            "near_fraction": 0.525035765379113,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.6225835480652789,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 45,
+              "9": 137,
+              "10": 185
+            }
+          },
+          "0.05": {
+            "near_count": 421,
+            "near_fraction": 0.6022889842632332,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.6833742654967521,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 78,
+              "9": 156,
+              "10": 187
+            }
+          },
+          "0.10": {
+            "near_count": 493,
+            "near_fraction": 0.7052932761087267,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.7221173867943371,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 126,
+              "9": 179,
+              "10": 188
+            }
+          }
+        },
+        "median_by_original": {
+          "8": 7.8544832182497535,
+          "9": 7.9919341482051145,
+          "10": 7.999739059748162
+        },
+        "rating_output_max": 7.9999999999999964
+      },
+      "seq_ordinary_huber": {
+        "label": "Transformer + ordinary Huber",
+        "target_kind": "exact_target",
+        "rating_scale_field": "expected_observed_label",
+        "rating_scale_note": "evaluated latent score is on another scale; rating-scale output is the model's expected observed rating (cumulative: bounded by the cap; Transformer Huber: de-standardized prediction averaged over seeds, rank-consistent with the latent score up to seed averaging; see rating_vs_latent_spearman)",
+        "rank_field": "latent_score",
+        "seeds": [
+          2025,
+          2026,
+          2027
+        ],
+        "capped_count": 699,
+        "title_clusters": 697,
+        "capped_group_spearman": 0.4536460909311811,
+        "rank_tie_pair_fraction": 4.099183852494968e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 55,
+            "near_fraction": 0.07868383404864092,
+            "above_count": 180,
+            "above_fraction": 0.2575107296137339,
+            "near_rho": -0.18976180215646643,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 11,
+              "9": 21,
+              "10": 23
+            }
+          },
+          "0.05": {
+            "near_count": 136,
+            "near_fraction": 0.19456366237482117,
+            "above_count": 145,
+            "above_fraction": 0.20743919885550788,
+            "near_rho": -0.1267876856627733,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 29,
+              "9": 53,
+              "10": 54
+            }
+          },
+          "0.10": {
+            "near_count": 270,
+            "near_fraction": 0.38626609442060084,
+            "above_count": 74,
+            "above_fraction": 0.10586552217453506,
+            "near_rho": 0.013612449935776975,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 61,
+              "9": 97,
+              "10": 112
+            }
+          }
+        },
+        "median_by_original": {
+          "8": 7.735018889109294,
+          "9": 7.941703637441,
+          "10": 7.989120801289876
+        },
+        "rating_output_max": 8.302398999532064,
+        "rating_vs_latent_spearman": 0.9806979032797202
+      },
+      "seq_topcoded_huber": {
+        "label": "Transformer + one-sided Huber",
+        "target_kind": "lower_bound",
+        "rating_scale_field": "expected_observed_label",
+        "rating_scale_note": "evaluated latent score is on another scale; rating-scale output is the model's expected observed rating (cumulative: bounded by the cap; Transformer Huber: de-standardized prediction averaged over seeds, rank-consistent with the latent score up to seed averaging; see rating_vs_latent_spearman)",
+        "rank_field": "latent_score",
+        "seeds": [
+          2025,
+          2026,
+          2027
+        ],
+        "capped_count": 699,
+        "title_clusters": 697,
+        "capped_group_spearman": 0.6708065837027106,
+        "rank_tie_pair_fraction": 4.099183852494968e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 8,
+            "near_fraction": 0.011444921316165951,
+            "above_count": 530,
+            "above_fraction": 0.7582260371959942,
+            "near_rho": -0.12598815766974242,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 6,
+              "9": 2,
+              "10": 0
+            }
+          },
+          "0.05": {
+            "near_count": 21,
+            "near_fraction": 0.030042918454935622,
+            "above_count": 523,
+            "above_fraction": 0.748211731044349,
+            "near_rho": -0.2752938671433007,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 13,
+              "9": 8,
+              "10": 0
+            }
+          },
+          "0.10": {
+            "near_count": 45,
+            "near_fraction": 0.06437768240343347,
+            "above_count": 507,
+            "above_fraction": 0.7253218884120172,
+            "near_rho": -0.3250681710980453,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 31,
+              "9": 13,
+              "10": 1
+            }
+          }
+        },
+        "median_by_original": {
+          "8": 8.062034606933594,
+          "9": 8.763950030008951,
+          "10": 9.331938107808432
+        },
+        "rating_output_max": 10.180932998657227,
+        "rating_vs_latent_spearman": 0.9964122419738669
+      },
+      "seq_ordinal_logit": {
+        "label": "Transformer + cumulative logit",
+        "target_kind": "ordinal_cumulative",
+        "rating_scale_field": "expected_observed_label",
+        "rating_scale_note": "evaluated latent score is on another scale; rating-scale output is the model's expected observed rating (cumulative: bounded by the cap; Transformer Huber: de-standardized prediction averaged over seeds, rank-consistent with the latent score up to seed averaging; see rating_vs_latent_spearman)",
+        "rank_field": "latent_score",
+        "seeds": [
+          2025,
+          2026,
+          2027
+        ],
+        "capped_count": 699,
+        "title_clusters": 697,
+        "capped_group_spearman": 0.718432703600944,
+        "rank_tie_pair_fraction": 4.099183852494968e-06,
+        "by_delta": {
+          "0.02": {
+            "near_count": 281,
+            "near_fraction": 0.402002861230329,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.37151698612552375,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 28,
+              "9": 84,
+              "10": 169
+            }
+          },
+          "0.05": {
+            "near_count": 399,
+            "near_fraction": 0.5708154506437768,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.5613326023065713,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 70,
+              "9": 148,
+              "10": 181
+            }
+          },
+          "0.10": {
+            "near_count": 479,
+            "near_fraction": 0.6852646638054364,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.6281538204613083,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "8": 124,
+              "9": 168,
+              "10": 187
+            }
+          }
+        },
+        "median_by_original": {
+          "8": 7.846082051595052,
+          "9": 7.974408547083537,
+          "10": 7.9928613503774
+        },
+        "rating_output_max": 7.999377886454265,
+        "rating_vs_latent_spearman": 0.9844934899308263
+      }
+    },
+    "cap9": {
+      "ordinary_huber": {
+        "label": "Huber (ordinary)",
+        "target_kind": "exact_target",
+        "rating_scale_field": "latent_score",
+        "rating_scale_note": "evaluated score is itself on the rating scale",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 398,
+        "title_clusters": 397,
+        "capped_group_spearman": 0.6357655626961232,
+        "rank_tie_pair_fraction": 1.2657747174157944e-05,
+        "by_delta": {
+          "0.02": {
+            "near_count": 13,
+            "near_fraction": 0.032663316582914576,
+            "above_count": 108,
+            "above_fraction": 0.271356783919598,
+            "near_rho": -0.04454354031873739,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 4,
+              "10": 9
+            }
+          },
+          "0.05": {
+            "near_count": 29,
+            "near_fraction": 0.0728643216080402,
+            "above_count": 104,
+            "above_fraction": 0.2613065326633166,
+            "near_rho": -0.1348399724926484,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 7,
+              "10": 22
+            }
+          },
+          "0.10": {
+            "near_count": 65,
+            "near_fraction": 0.16331658291457288,
+            "above_count": 86,
+            "above_fraction": 0.21608040201005024,
+            "near_rho": 0.09327531340557957,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 16,
+              "10": 49
+            }
+          }
+        },
+        "median_by_original": {
+          "9": 8.536789668536452,
+          "10": 9.053568980255994
+        },
+        "rating_output_max": 10.13962818432103
+      },
+      "topcoded_huber": {
+        "label": "Huber (one-sided)",
+        "target_kind": "lower_bound",
+        "rating_scale_field": "latent_score",
+        "rating_scale_note": "evaluated score is itself on the rating scale",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 398,
+        "title_clusters": 397,
+        "capped_group_spearman": 0.6794604894622364,
+        "rank_tie_pair_fraction": 1.2657747174157944e-05,
+        "by_delta": {
+          "0.02": {
+            "near_count": 0,
+            "near_fraction": 0.0,
+            "above_count": 286,
+            "above_fraction": 0.7185929648241206,
+            "near_rho": null,
+            "near_rho_undefined_reason": "fewer than 5 near-cap charts or constant input",
+            "near_original_counts": {
+              "9": 0,
+              "10": 0
+            }
+          },
+          "0.05": {
+            "near_count": 11,
+            "near_fraction": 0.02763819095477387,
+            "above_count": 279,
+            "above_fraction": 0.7010050251256281,
+            "near_rho": -0.12909944487358058,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 8,
+              "10": 3
+            }
+          },
+          "0.10": {
+            "near_count": 29,
+            "near_fraction": 0.0728643216080402,
+            "above_count": 270,
+            "above_fraction": 0.678391959798995,
+            "near_rho": 0.0,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 22,
+              "10": 7
+            }
+          }
+        },
+        "median_by_original": {
+          "9": 8.999067495522187,
+          "10": 9.997492843241865
+        },
+        "rating_output_max": 12.419903650125633
+      },
+      "ridge": {
+        "label": "Ridge",
+        "target_kind": "exact_target",
+        "rating_scale_field": "latent_score",
+        "rating_scale_note": "evaluated score is itself on the rating scale",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 398,
+        "title_clusters": 397,
+        "capped_group_spearman": 0.5872545618375524,
+        "rank_tie_pair_fraction": 1.2657747174157944e-05,
+        "by_delta": {
+          "0.02": {
+            "near_count": 17,
+            "near_fraction": 0.04271356783919598,
+            "above_count": 113,
+            "above_fraction": 0.28391959798994976,
+            "near_rho": -0.0790569415042095,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 5,
+              "10": 12
+            }
+          },
+          "0.05": {
+            "near_count": 32,
+            "near_fraction": 0.08040201005025126,
+            "above_count": 107,
+            "above_fraction": 0.26884422110552764,
+            "near_rho": -0.21885688981825285,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 8,
+              "10": 24
+            }
+          },
+          "0.10": {
+            "near_count": 60,
+            "near_fraction": 0.1507537688442211,
+            "above_count": 99,
+            "above_fraction": 0.24874371859296482,
+            "near_rho": 0.16124563349633034,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 17,
+              "10": 43
+            }
+          }
+        },
+        "median_by_original": {
+          "9": 8.549647988937261,
+          "10": 9.070401238335874
+        },
+        "rating_output_max": 10.159364022322489
+      },
+      "gbdt": {
+        "label": "GBDT",
+        "target_kind": "exact_target",
+        "rating_scale_field": "latent_score",
+        "rating_scale_note": "evaluated score is itself on the rating scale",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 398,
+        "title_clusters": 397,
+        "capped_group_spearman": 0.5992947470686959,
+        "rank_tie_pair_fraction": 1.2657747174157944e-05,
+        "by_delta": {
+          "0.02": {
+            "near_count": 99,
+            "near_fraction": 0.24874371859296482,
+            "above_count": 52,
+            "above_fraction": 0.1306532663316583,
+            "near_rho": 0.1820983168884809,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 13,
+              "10": 86
+            }
+          },
+          "0.05": {
+            "near_count": 163,
+            "near_fraction": 0.40954773869346733,
+            "above_count": 28,
+            "above_fraction": 0.07035175879396985,
+            "near_rho": 0.1551049540072449,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 30,
+              "10": 133
+            }
+          },
+          "0.10": {
+            "near_count": 216,
+            "near_fraction": 0.542713567839196,
+            "above_count": 6,
+            "above_fraction": 0.01507537688442211,
+            "near_rho": 0.2719051952787015,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 58,
+              "10": 158
+            }
+          }
+        },
+        "median_by_original": {
+          "9": 8.751076757599947,
+          "10": 8.994194354699099
+        },
+        "rating_output_max": 9.221261038362282
+      },
+      "ordinal_logit": {
+        "label": "Cumulative logit",
+        "target_kind": "ordinal_cumulative",
+        "rating_scale_field": "expected_observed_label",
+        "rating_scale_note": "evaluated latent score is on another scale; rating-scale output is the model's expected observed rating (cumulative: bounded by the cap; Transformer Huber: de-standardized prediction averaged over seeds, rank-consistent with the latent score up to seed averaging; see rating_vs_latent_spearman)",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 398,
+        "title_clusters": 397,
+        "capped_group_spearman": 0.6925952369871201,
+        "rank_tie_pair_fraction": 1.2657747174157944e-05,
+        "by_delta": {
+          "0.02": {
+            "near_count": 109,
+            "near_fraction": 0.27386934673366836,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.19678382145704643,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 8,
+              "10": 101
+            }
+          },
+          "0.05": {
+            "near_count": 163,
+            "near_fraction": 0.40954773869346733,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.38028076615897427,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 25,
+              "10": 138
+            }
+          },
+          "0.10": {
+            "near_count": 205,
+            "near_fraction": 0.5150753768844221,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.4314585388234593,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 44,
+              "10": 161
+            }
+          }
+        },
+        "median_by_original": {
+          "9": 8.69993427059067,
+          "10": 8.985172631932997
+        },
+        "rating_output_max": 8.99999676035151,
+        "rating_vs_latent_spearman": 0.9993537886353975
+      },
+      "ordinal_probit": {
+        "label": "Cumulative probit",
+        "target_kind": "ordinal_cumulative",
+        "rating_scale_field": "expected_observed_label",
+        "rating_scale_note": "evaluated latent score is on another scale; rating-scale output is the model's expected observed rating (cumulative: bounded by the cap; Transformer Huber: de-standardized prediction averaged over seeds, rank-consistent with the latent score up to seed averaging; see rating_vs_latent_spearman)",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 398,
+        "title_clusters": 397,
+        "capped_group_spearman": 0.6896618100398961,
+        "rank_tie_pair_fraction": 1.2657747174157944e-05,
+        "by_delta": {
+          "0.02": {
+            "near_count": 125,
+            "near_fraction": 0.314070351758794,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.20185640808192687,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 10,
+              "10": 115
+            }
+          },
+          "0.05": {
+            "near_count": 166,
+            "near_fraction": 0.41708542713567837,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.37736748208868376,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 26,
+              "10": 140
+            }
+          },
+          "0.10": {
+            "near_count": 199,
+            "near_fraction": 0.5,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.40840237569884774,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 40,
+              "10": 159
+            }
+          }
+        },
+        "median_by_original": {
+          "9": 8.707559916731018,
+          "10": 8.99287836148834
+        },
+        "rating_output_max": 8.99999999999979,
+        "rating_vs_latent_spearman": 0.9990463861747693
+      },
+      "ordinal_logit_reduction": {
+        "label": "Ordinal reduction",
+        "target_kind": "ordinal_binary_reduction",
+        "rating_scale_field": "latent_score",
+        "rating_scale_note": "evaluated score is itself on the rating scale",
+        "rank_field": "latent_score",
+        "seeds": null,
+        "capped_count": 398,
+        "title_clusters": 397,
+        "capped_group_spearman": 0.741762975221935,
+        "rank_tie_pair_fraction": 1.2657747174157944e-05,
+        "by_delta": {
+          "0.02": {
+            "near_count": 153,
+            "near_fraction": 0.3844221105527638,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.1621266426674141,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 11,
+              "10": 142
+            }
+          },
+          "0.05": {
+            "near_count": 204,
+            "near_fraction": 0.5125628140703518,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.4358332093199379,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 36,
+              "10": 168
+            }
+          },
+          "0.10": {
+            "near_count": 240,
+            "near_fraction": 0.6030150753768844,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.5275045790526787,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 60,
+              "10": 180
+            }
+          }
+        },
+        "median_by_original": {
+          "9": 8.77884936334494,
+          "10": 8.992207965875298
+        },
+        "rating_output_max": 8.999991079657892
+      },
+      "seq_ordinary_huber": {
+        "label": "Transformer + ordinary Huber",
+        "target_kind": "exact_target",
+        "rating_scale_field": "expected_observed_label",
+        "rating_scale_note": "evaluated latent score is on another scale; rating-scale output is the model's expected observed rating (cumulative: bounded by the cap; Transformer Huber: de-standardized prediction averaged over seeds, rank-consistent with the latent score up to seed averaging; see rating_vs_latent_spearman)",
+        "rank_field": "latent_score",
+        "seeds": [
+          2027
+        ],
+        "capped_count": 398,
+        "title_clusters": 397,
+        "capped_group_spearman": 0.47547786040079176,
+        "rank_tie_pair_fraction": 1.2657747174157944e-05,
+        "by_delta": {
+          "0.02": {
+            "near_count": 19,
+            "near_fraction": 0.04773869346733668,
+            "above_count": 96,
+            "above_fraction": 0.24120603015075376,
+            "near_rho": -0.43825049008927774,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 7,
+              "10": 12
+            }
+          },
+          "0.05": {
+            "near_count": 38,
+            "near_fraction": 0.09547738693467336,
+            "above_count": 84,
+            "above_fraction": 0.21105527638190955,
+            "near_rho": -0.3353784988318981,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 16,
+              "10": 22
+            }
+          },
+          "0.10": {
+            "near_count": 94,
+            "near_fraction": 0.23618090452261306,
+            "above_count": 63,
+            "above_fraction": 0.15829145728643215,
+            "near_rho": 0.022933424939850254,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 31,
+              "10": 63
+            }
+          }
+        },
+        "median_by_original": {
+          "9": 8.59754467010498,
+          "10": 8.939204692840576
+        },
+        "rating_output_max": 9.38369369506836,
+        "rating_vs_latent_spearman": 0.9970270470386673
+      },
+      "seq_ordinal_logit": {
+        "label": "Transformer + cumulative logit",
+        "target_kind": "ordinal_cumulative",
+        "rating_scale_field": "expected_observed_label",
+        "rating_scale_note": "evaluated latent score is on another scale; rating-scale output is the model's expected observed rating (cumulative: bounded by the cap; Transformer Huber: de-standardized prediction averaged over seeds, rank-consistent with the latent score up to seed averaging; see rating_vs_latent_spearman)",
+        "rank_field": "latent_score",
+        "seeds": [
+          2027
+        ],
+        "capped_count": 398,
+        "title_clusters": 397,
+        "capped_group_spearman": 0.7009139104195464,
+        "rank_tie_pair_fraction": 1.2657747174157944e-05,
+        "by_delta": {
+          "0.02": {
+            "near_count": 79,
+            "near_fraction": 0.1984924623115578,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.40112585327115674,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 8,
+              "10": 71
+            }
+          },
+          "0.05": {
+            "near_count": 154,
+            "near_fraction": 0.3869346733668342,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.34030008593081656,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 21,
+              "10": 133
+            }
+          },
+          "0.10": {
+            "near_count": 212,
+            "near_fraction": 0.5326633165829145,
+            "above_count": 0,
+            "above_fraction": 0.0,
+            "near_rho": 0.3289261236433094,
+            "near_rho_undefined_reason": null,
+            "near_original_counts": {
+              "9": 41,
+              "10": 171
+            }
+          }
+        },
+        "median_by_original": {
+          "9": 8.724601745605469,
+          "10": 8.970719337463379
+        },
+        "rating_output_max": 8.998857498168945,
+        "rating_vs_latent_spearman": 0.9787736221660205
+      }
+    }
+  },
+  "figure": {
+    "path": "paper/manuscript/generated/ceiling_compression.pdf",
+    "width_in": 3.386,
+    "height_in": 1.3,
+    "y_limits": [
+      7.0,
+      12.597613176367448
+    ],
+    "encoding": "median marker, thick bar = interquartile range, thin bar = 10th-90th percentile",
+    "groups": {
+      "gbdt": [
+        {
+          "original": 8,
+          "n": 301,
+          "q10": 7.087230019028226,
+          "q25": 7.53259003272848,
+          "median": 7.853450551331822,
+          "q75": 7.982671410764841,
+          "q90": 8.02119111753836
+        },
+        {
+          "original": 9,
+          "n": 208,
+          "q10": 7.854795813969282,
+          "q25": 7.964282544941014,
+          "median": 7.9943579173574015,
+          "q75": 8.007564849460492,
+          "q90": 8.04120943216206
+        },
+        {
+          "original": 10,
+          "n": 190,
+          "q10": 7.949868026011307,
+          "q25": 7.986110601943597,
+          "median": 7.997054377912717,
+          "q75": 8.006729064581616,
+          "q90": 8.020257599892565
+        }
+      ],
+      "ordinary_huber": [
+        {
+          "original": 8,
+          "n": 301,
+          "q10": 7.179156937826677,
+          "q25": 7.485721140961021,
+          "median": 7.674694781443913,
+          "q75": 7.830810908149649,
+          "q90": 7.931084066554912
+        },
+        {
+          "original": 9,
+          "n": 208,
+          "q10": 7.623772362104911,
+          "q25": 7.824424072063566,
+          "median": 7.963993087464589,
+          "q75": 8.072995313599545,
+          "q90": 8.173375460015631
+        },
+        {
+          "original": 10,
+          "n": 190,
+          "q10": 7.779221338648603,
+          "q25": 7.9685564278664005,
+          "median": 8.088115741404023,
+          "q75": 8.230686827154548,
+          "q90": 8.357138692875685
+        }
+      ],
+      "topcoded_huber": [
+        {
+          "original": 8,
+          "n": 301,
+          "q10": 7.254569046296824,
+          "q25": 7.786207820955538,
+          "median": 8.262190989222235,
+          "q75": 8.675939825037252,
+          "q90": 9.162865869910537
+        },
+        {
+          "original": 9,
+          "n": 208,
+          "q10": 8.291347446572805,
+          "q25": 8.71536212499904,
+          "median": 9.268895613873294,
+          "q75": 9.74704234898099,
+          "q90": 10.243068231032908
+        },
+        {
+          "original": 10,
+          "n": 190,
+          "q10": 9.191936849206055,
+          "q25": 9.869618690291698,
+          "median": 10.412482868453534,
+          "q75": 11.018732418787666,
+          "q90": 11.847613176367448
+        }
+      ]
+    }
+  },
+  "macros": {
+    "path": "paper/manuscript/generated/ceiling_compression_numbers.tex",
+    "names": [
+      "CeilDelta",
+      "CeilGbdtNearPct",
+      "CeilGbdtNearPctLow",
+      "CeilGbdtNearPctHigh",
+      "CeilGbdtNearCount",
+      "CeilGbdtAbovePct",
+      "CeilGbdtNearRho",
+      "CeilGbdtNearRhoLow",
+      "CeilGbdtNearRhoHigh",
+      "CeilHuberNearPct",
+      "CeilHuberNearPctLow",
+      "CeilHuberNearPctHigh",
+      "CeilHuberNearCount",
+      "CeilHuberAbovePct",
+      "CeilHuberNearRho",
+      "CeilHuberNearRhoLow",
+      "CeilHuberNearRhoHigh",
+      "CeilRidgeNearPct",
+      "CeilRidgeNearPctLow",
+      "CeilRidgeNearPctHigh",
+      "CeilRidgeNearCount",
+      "CeilRidgeAbovePct",
+      "CeilRidgeNearRho",
+      "CeilRidgeNearRhoLow",
+      "CeilRidgeNearRhoHigh",
+      "CeilOneSidedNearPct",
+      "CeilOneSidedNearPctLow",
+      "CeilOneSidedNearPctHigh",
+      "CeilOneSidedNearCount",
+      "CeilOneSidedAbovePct",
+      "CeilReductionNearPct",
+      "CeilReductionNearPctLow",
+      "CeilReductionNearPctHigh",
+      "CeilReductionNearCount",
+      "CeilReductionAbovePct",
+      "CeilReductionNearRho",
+      "CeilReductionNearRhoLow",
+      "CeilReductionNearRhoHigh",
+      "CeilSeqHuberNearPct",
+      "CeilSeqHuberNearPctLow",
+      "CeilSeqHuberNearPctHigh",
+      "CeilSeqHuberNearCount",
+      "CeilSeqHuberAbovePct",
+      "CeilSeqHuberNearRho",
+      "CeilSeqHuberNearRhoLow",
+      "CeilSeqHuberNearRhoHigh",
+      "CeilSeqOneSidedNearPct",
+      "CeilSeqOneSidedNearPctLow",
+      "CeilSeqOneSidedNearPctHigh",
+      "CeilSeqOneSidedNearCount",
+      "CeilSeqOneSidedAbovePct",
+      "CeilSeqLogitNearPct",
+      "CeilSeqLogitNearPctLow",
+      "CeilSeqLogitNearPctHigh",
+      "CeilSeqLogitNearCount",
+      "CeilSeqLogitAbovePct",
+      "CeilSeqLogitNearRho",
+      "CeilSeqLogitNearRhoLow",
+      "CeilSeqLogitNearRhoHigh",
+      "CeilGbdtMedianEight",
+      "CeilGbdtMedianNine",
+      "CeilGbdtMedianTen",
+      "CeilHuberMedianEight",
+      "CeilHuberMedianNine",
+      "CeilHuberMedianTen",
+      "CeilOneSidedMedianEight",
+      "CeilOneSidedMedianNine",
+      "CeilOneSidedMedianTen"
+    ]
+  }
+}

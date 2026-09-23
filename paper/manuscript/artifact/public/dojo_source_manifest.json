@@ -1,0 +1,88 @@
+{
+  "course_fact_license": "not asserted; factual metadata used with attribution",
+  "official_context_urls": {
+    "20": [
+      "https://taiko-ch.net/blog/?m=20200623",
+      "https://taiko-ch.net/blog/?p=5102",
+      "https://taiko-ch.net/blog/?m=20201119"
+    ],
+    "21": [
+      "https://taiko-ch.net/blog/?p=5623",
+      "https://taiko-ch.net/blog/?m=202108"
+    ],
+    "22": [
+      "https://taiko-ch.net/blog/?m=202205",
+      "https://taiko-ch.net/blog/?m=202208"
+    ],
+    "23": [
+      "https://taiko-ch.net/blog/?m=20230914"
+    ],
+    "24": [
+      "https://taiko-ch.net/blog/?m=20240523",
+      "https://taiko-ch.net/blog/?m=202409"
+    ],
+    "25": [
+      "https://taiko-ch.net/blog/?p=14433",
+      "https://taiko-ch.net/blog/?m=202509"
+    ]
+  },
+  "official_mode_url": "https://taiko.namco-ch.net/taiko/en/special/dani_dojo/index.php",
+  "output": {
+    "path": "experiments/icassp2027_dojo/data/course_placements.jsonl",
+    "placement_count": 342,
+    "rank_count_per_year": 19,
+    "sha256": "d952f059ea22a50b98b293caab777f0873e4ee918101bc2bb1e3f441f0de79d9",
+    "songs_per_rank": 3,
+    "year_count": 6
+  },
+  "retrieved_at_utc": "2026-08-05T20:16:22.424069+00:00",
+  "schema_version": "icassp2027_dojo_source_manifest_v1",
+  "source_code_commit": "84ecdd69438a054fdf6a3ba7a33194089327f58a",
+  "source_code_license": "MIT",
+  "source_code_license_url": "https://github.com/taikowiki/taikowiki/blob/84ecdd69438a054fdf6a3ba7a33194089327f58a/LICENSE",
+  "source_description": "Taiko Wiki public API transcription of official Dan-i Dojo course facts, corroborated by annual official Taiko no Tatsujin notices",
+  "source_files": {
+    "songs": {
+      "path": "experiments/icassp2027_dojo/data/raw/songs.json",
+      "sha256": "0c6d3103eadb9a81220b504a58d6bfa0cb201beac09d9d10034c598e716cb8cc",
+      "size_bytes": 2525736,
+      "url": "https://taiko.wiki/api/v1/song/all"
+    },
+    "version_20": {
+      "path": "experiments/icassp2027_dojo/data/raw/dani_20.json",
+      "sha256": "98fd43d715158cac795dff66225ec043139c3232abb65b1cde3bcdfdce281392",
+      "size_bytes": 7247,
+      "url": "https://taiko.wiki/api/v1/dani/version/20"
+    },
+    "version_21": {
+      "path": "experiments/icassp2027_dojo/data/raw/dani_21.json",
+      "sha256": "0ccfa31f2bdeb95b4410ba5a6c1afb928caec72e8e1095924df2b7163ee3f3b1",
+      "size_bytes": 7264,
+      "url": "https://taiko.wiki/api/v1/dani/version/21"
+    },
+    "version_22": {
+      "path": "experiments/icassp2027_dojo/data/raw/dani_22.json",
+      "sha256": "b95e465829928d5168e9d0f24d6c1ff171ac448347375ddbb03c79ce442f3316",
+      "size_bytes": 7274,
+      "url": "https://taiko.wiki/api/v1/dani/version/22"
+    },
+    "version_23": {
+      "path": "experiments/icassp2027_dojo/data/raw/dani_23.json",
+      "sha256": "ca3e0433149a9bd8972cf5cae5d25094685d1a3008e6f855d73302a756ad2ba4",
+      "size_bytes": 7222,
+      "url": "https://taiko.wiki/api/v1/dani/version/23"
+    },
+    "version_24": {
+      "path": "experiments/icassp2027_dojo/data/raw/dani_24.json",
+      "sha256": "3a694965a21cd249c67ea81f3e02333e02a8e8977953fd37ec445587bc1141b2",
+      "size_bytes": 7217,
+      "url": "https://taiko.wiki/api/v1/dani/version/24"
+    },
+    "version_25": {
+      "path": "experiments/icassp2027_dojo/data/raw/dani_25.json",
+      "sha256": "b7c1b1995e0089eb9cafdfdeae29961679d8b5a1a94b5f6d0c5fd8f7a1726104",
+      "size_bytes": 7229,
+      "url": "https://taiko.wiki/api/v1/dani/version/25"
+    }
+  }
+}

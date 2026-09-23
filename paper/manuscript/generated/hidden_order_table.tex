@@ -1,0 +1,17 @@
+\begin{tabular}{lcccc}
+\toprule
+Model & Full scale & Cap 7 & Cap 8 & Cap 9 \\
+\midrule
+Huber (ordinary) & 0.881 & 0.493 & 0.640 & 0.636 \\
+Huber (one-sided) & 0.883 & 0.722 & 0.732 & 0.679 \\
+Ridge & 0.876 & 0.471 & 0.589 & 0.587 \\
+GBDT & 0.897 & 0.349 & 0.435 & 0.599 \\
+Cumulative logit & 0.878 & 0.811 & 0.761 & 0.693 \\
+Cumulative probit & 0.880 & 0.809 & 0.760 & 0.690 \\
+Ordinal reduction & 0.890 & 0.795 & 0.766 & 0.742 \\
+\midrule
+Transformer + ordinary Huber & --- & 0.415 & 0.454 {[0.033]} & 0.475 \\
+Transformer + one-sided Huber & --- & --- & 0.671 {[0.010]} & --- \\
+Transformer + cumulative logit & 0.885 {[0.001]} & 0.698 & 0.718 {[0.003]} & 0.701 \\
+\bottomrule
+\end{tabular}

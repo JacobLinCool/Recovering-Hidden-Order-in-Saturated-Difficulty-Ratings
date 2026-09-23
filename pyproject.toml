@@ -1,0 +1,23 @@
+[project]
+name = "recovering-hidden-order-in-saturated-difficulty-ratings"
+version = "0.1.0"
+description = "Code and public evidence for the hidden-order difficulty-rating study"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Jacob Lin" }]
+dependencies = [
+    "datasets==4.4.2",
+    "joblib==1.5.3",
+    "matplotlib==3.10.8",
+    "numpy==2.4.0",
+    "safetensors==0.7.0",
+    "scikit-learn==1.8.0",
+    "scipy==1.16.3",
+    "torch==2.9.1",
+]
+
+[dependency-groups]
+dev = ["pytest>=9.0.0"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
