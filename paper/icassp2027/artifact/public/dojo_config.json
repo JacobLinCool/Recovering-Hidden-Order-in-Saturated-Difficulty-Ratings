@@ -1,0 +1,18 @@
+{
+  "schema_version": "icassp2027_dojo_config_v1",
+  "versions": ["20", "21", "22", "23", "24", "25"],
+  "primary_dans": ["10dan", "kuroto", "meijin", "chojin", "tatsujin"],
+  "primary_difficulty": "oni",
+  "primary_official_star": 10,
+  "primary_global_condition": "topcoded_huber",
+  "replication_sequence_condition": "seq_ordinal_logit",
+  "bootstrap_replicates": 10000,
+  "permutation_replicates": 10000,
+  "random_seed": 2027,
+  "expected_total_placements": 342,
+  "expected_high_dan_placements": 90,
+  "expected_high_dan_ten_star_placements": 86,
+  "expected_high_dan_ten_star_oni_placements": 50,
+  "expected_primary_matched_placements": 47,
+  "expected_primary_years": 6
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": "sequence_oof_config",
+  "experiment_id": "icassp2027_sequence_oof",
+  "primary_evidence": true,
+  "outer_folds": 5,
+  "inner_validation_fraction": 0.1,
+  "fold_seed": 2027,
+  "scenarios": {
+    "cap7": {"cap": 7},
+    "cap8": {"cap": 8},
+    "cap9": {"cap": 9},
+    "native": {"cap": 10}
+  },
+  "matrix": [
+    {"scenario": "cap8", "condition": "seq_ordinary_huber", "seeds": [2025, 2026, 2027]},
+    {"scenario": "cap8", "condition": "seq_topcoded_huber", "seeds": [2025, 2026, 2027]},
+    {"scenario": "cap8", "condition": "seq_ordinal_logit", "seeds": [2025, 2026, 2027]},
+    {"scenario": "cap7", "condition": "seq_ordinary_huber", "seeds": [2027]},
+    {"scenario": "cap7", "condition": "seq_ordinal_logit", "seeds": [2027]},
+    {"scenario": "cap9", "condition": "seq_ordinary_huber", "seeds": [2027]},
+    {"scenario": "cap9", "condition": "seq_ordinal_logit", "seeds": [2027]},
+    {"scenario": "native", "condition": "seq_ordinal_logit", "seeds": [2025, 2026, 2027]}
+  ],
+  "training": {
+    "epochs": 100,
+    "early_stopping_patience": 12,
+    "early_stopping_min_delta": 0.0001,
+    "batch_size": 16,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.01,
+    "gradient_clip": 1.0,
+    "huber_delta": 1.0
+  },
+  "architecture": {
+    "d_model": 256,
+    "encoder_layers": 4,
+    "attention_heads": 4,
+    "feedforward_dim": 512,
+    "dropout": 0.1,
+    "head_hidden_dim": 128,
+    "max_tokens_per_instance": 128,
+    "max_instances_per_chart": 64,
+    "hop_measures": 2,
+    "window_measures": [2, 4],
+    "encoder_pooling": "mean",
+    "chart_pooling": "masked_mean"
+  },
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed": 2027
+}

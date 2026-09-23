@@ -1,0 +1,75 @@
+{
+  "schema_version": "topcoded_oof_config_v1",
+  "experiment_id": "icassp2027_topcoded_oof_v1",
+  "primary_evidence": true,
+  "seed": 2027,
+  "outer_folds": 5,
+  "inner_validation_fraction": 0.1,
+  "conditions": [
+    "ordinary_huber",
+    "topcoded_huber",
+    "ridge",
+    "gbdt",
+    "ordinal_logit",
+    "ordinal_probit",
+    "ordinal_logit_reduction"
+  ],
+  "scenarios": {
+    "native": {
+      "cap": 10
+    },
+    "cap7": {
+      "cap": 7
+    },
+    "cap8": {
+      "cap": 8
+    },
+    "cap9": {
+      "cap": 9
+    }
+  },
+  "primary_scenario": "cap8",
+  "alpha_grid": [
+    1e-06,
+    1e-05,
+    0.0001,
+    0.001,
+    0.01,
+    0.1,
+    1.0
+  ],
+  "ridge_alpha_grid": [
+    0.1,
+    1.0,
+    10.0
+  ],
+  "ordinal_reduction_c_grid": [
+    0.1,
+    1.0,
+    10.0
+  ],
+  "gbdt_grid": [
+    {
+      "learning_rate": 0.05,
+      "max_leaf_nodes": 15
+    },
+    {
+      "learning_rate": 0.05,
+      "max_leaf_nodes": 31
+    },
+    {
+      "learning_rate": 0.1,
+      "max_leaf_nodes": 15
+    },
+    {
+      "learning_rate": 0.1,
+      "max_leaf_nodes": 31
+    }
+  ],
+  "huber_delta": 1.0,
+  "optimizer_max_iter": 5000,
+  "optimizer_tolerance": 1e-10,
+  "minimum_threshold_gap": 1e-06,
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed": 2027
+}

@@ -1,0 +1,50 @@
+{
+  "placement_count": 47,
+  "plot_data": [
+    {
+      "ci_high": 0.8269144038378156,
+      "ci_low": 0.24835430093683009,
+      "condition": "topcoded_huber",
+      "family": "global",
+      "metric": "macro_year_spearman",
+      "permutation_p_value": 9.999000099990002e-05,
+      "point": 0.6152372696192437
+    },
+    {
+      "ci_high": 0.7557862184644216,
+      "ci_low": 0.10081257728230947,
+      "condition": "seq_ordinal_logit",
+      "family": "sequence",
+      "metric": "macro_year_spearman",
+      "permutation_p_value": 0.0004999500049995,
+      "point": 0.5037067469380344
+    },
+    {
+      "ci_high": 0.894623033052667,
+      "ci_low": 0.6049957156321253,
+      "condition": "topcoded_huber",
+      "family": "global",
+      "metric": "within_year_pair_accuracy",
+      "permutation_p_value": 9.999000099990002e-05,
+      "point": 0.7665991811680501
+    },
+    {
+      "ci_high": 0.8590433583295461,
+      "ci_low": 0.5318355383864397,
+      "condition": "seq_ordinal_logit",
+      "family": "sequence",
+      "metric": "within_year_pair_accuracy",
+      "permutation_p_value": 0.0004999500049995,
+      "point": 0.709260207255728
+    }
+  ],
+  "schema_version": "icassp2027_dojo_figure_v1",
+  "tier_means_within_year_z": [
+    -0.6348734738613601,
+    -0.5710977670551509,
+    -0.07414050892718188,
+    0.5468580926401868,
+    1.389469315068667
+  ],
+  "year_count": 6
+}
